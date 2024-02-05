@@ -13,6 +13,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
     console.log(`searching... ${team}`);
 
     const params = new URLSearchParams(searchParams);
+    params.set('page', '1');
     if (team) {
       params.set('query', team);
     } else {
