@@ -12,12 +12,12 @@ import { formatCurrency } from './utils';
 import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchRevenue() {
-  // Add noStore() here to prevent the response from being cached.
-  // This is equivalent to in fetch(..., {cache: 'no-store'}).
+  // レスポンスがキャッシュされないようにするために、ここにnoStore()を追加します。
+  // これはfetch(..., {cache: 'no-store'})と同等です。
   // noStore();
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
+    // デモ目的でレスポンスを人工的に遅延させます。
+    // 本番環境ではこれを行わないでください :)
 
     console.log('Fetching revenue data...');
     await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -91,6 +91,7 @@ export async function fetchCardData() {
 }
 
 const ITEMS_PER_PAGE = 6;
+
 export async function fetchFilteredInvoices(
   query: string,
   currentPage: number,
@@ -169,7 +170,7 @@ export async function fetchInvoiceById(id: string) {
       // Convert amount from cents to dollars
       amount: invoice.amount / 100,
     }));
-
+    console.log(invoice);
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
